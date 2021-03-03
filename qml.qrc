@@ -2,7 +2,18 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Page1Form.ui.qml</file>
-        <file>Page2Form.ui.qml</file>
         <file>qtquickcontrols2.conf</file>
+        <file>icon/twitter.png</file>
+        <file>icon/png-transparent-computer-icons-magnifier-magnifying-glass-magnifying-glass-text-share-icon-magnifier.png</file>
+        <file>icon/png-clipart-magnifying-glass-computer-icons-magnifying-glass-glass-wikimedia-commons.png</file>
+        <file>icon/3844432-magnifier-search-zoom_110300.png</file>
+        <file>icon/3643769-building-home-house-main-menu-start_113416.png</file>
+        <file>icon/Menu_icon_icon-icons.com_71858.png</file>
+        <file>icon/seo-social-web-network-internet_150_icon-icons.com_61510.png</file>
+        <file>icon/clock_time_5025.png</file>
+        <file>icon/Button_Play-01_25091.png</file>
+        <file>icon/retweet_87545.png</file>
+        <file>icon/353430-checkbox-edit-pen-pencil_107516.png</file>
+        <file>icon/paintbrush_23864.png</file>
     </qresource>
 </RCC>
