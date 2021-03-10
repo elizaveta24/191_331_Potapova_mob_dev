@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.14.0, 2021-03-03T16:16:27. -->
+<!-- Written by QtCreator 4.14.0, 2021-03-08T14:21:26. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -570,7 +570,6 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">0</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">191_331_Potapova</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.AndroidRunConfiguration:D:/project/191_331_Potapova/191_331_Potapova.pro</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/project/191_331_Potapova/191_331_Potapova.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
