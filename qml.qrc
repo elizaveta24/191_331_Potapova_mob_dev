@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
-        <file>Page1Form.ui.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>icon/twitter.png</file>
         <file>icon/png-transparent-computer-icons-magnifier-magnifying-glass-magnifying-glass-text-share-icon-magnifier.png</file>
@@ -28,5 +26,12 @@
         <file>icon/video_pause.png</file>
         <file>icon/video_start.png</file>
         <file>icon/video_stop.png</file>
+        <file>Page_lab1.qml</file>
+        <file>Page_lab2.qml</file>
+        <file>Page_lab3.qml</file>
+        <file>main.qml</file>
+        <file>icon/sunset-landscape.png</file>
+        <file>icon/dog_PNG50375.png</file>
+        <file>Page_lab4.qml</file>
     </qresource>
 </RCC>
