@@ -3,7 +3,6 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.2 // подсказка конт пробел
 import QtMultimedia 5.4
-import QtWinExtras 1.0
 import QtQuick.Dialogs 1.0
 import QtQuick.Controls.Material 2.12
 import QtQuick.Controls.Universal 2.12
@@ -36,7 +35,7 @@ Page {
         }
         Label { //Создание метки с текстом
             id:label3 //задание id
-            text: qsTr("Лр №3 - Запросы к серверу по HTTP") //текст
+            text: qsTr("Запросы к серверу по HTTP") //текст
             color:"#1E90FF" //цвет
             Layout.row:0
             Layout.column:1

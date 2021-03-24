@@ -2,6 +2,7 @@
 #define HTTPCONTROLLER_H
 #include <QNetworkAccessManager>
 #include <QObject>
+#include <QJsonArray>
 
 class HTTPController : public QObject
 {

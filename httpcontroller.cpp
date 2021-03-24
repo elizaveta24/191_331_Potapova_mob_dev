@@ -1,17 +1,17 @@
 #include "httpcontroller.h"
-#include <QNetworkRequest>
-#include <QNetworkReply>
+#include <QNetworkRequest> // запрос
+#include <QNetworkReply> // ответ
+#include <QEventLoop> // (врезка обработки сигнала по месту действия)
+// программа прерывается с режима ожидания, когда приходит объект и продолжает работу
 #include <QDebug>
-#include <QEventLoop>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QUrl>
+#include <QString>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-#include <QtWidgets/QTableView>
-#include <QCryptographicHash>
+#include <QNetworkAccessManager>
+#include <QUrl>
+
+
 
 
 HTTPController::HTTPController(QObject *QMLObject) : pocaz(QMLObject)

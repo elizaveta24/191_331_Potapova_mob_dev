@@ -1,7 +1,7 @@
 QT += quick multimedia multimediawidgets
 QT += network
-QT += core
-QT += webengine
+
+
 
 CONFIG += c++11
 
