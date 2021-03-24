@@ -1,4 +1,7 @@
 QT += quick multimedia multimediawidgets
+QT += network
+QT += core
+QT += webengine
 
 CONFIG += c++11
 
@@ -7,6 +10,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        httpcontroller.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -35,3 +39,6 @@ DISTFILES += \
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 android: include(D:/android_openssl/android_openssl/openssl.pri)
+
+HEADERS += \
+    httpcontroller.h

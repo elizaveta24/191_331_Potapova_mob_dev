@@ -19,10 +19,10 @@ ApplicationWindow { //создание окна
         }
         Page_lab2 {
         }
+        Page_lab3dop{
+        }
         Page_lab3{
         }
-        /*Page_lab4{
-        }*/
 
 
 }
@@ -60,6 +60,21 @@ ApplicationWindow { //создание окна
                }
                TabButton { //создание кнопки 3
                    Text{
+                       text:"Lab3dop"
+                       color:"#1E90FF"
+                       font.family: "Courier"
+                       font.pixelSize: 17
+                       anchors.horizontalCenter: parent.horizontalCenter //горизонтально в центре от родителя
+                       anchors.verticalCenter: parent.verticalCenter //вертикально в центре от родителя
+                   }
+                   background: Rectangle {
+                       border.color: parent.pressed ? "#1E90FF" : "#1E90FF" //цвет рамки
+                       color: "white"
+                       }
+
+               }
+               TabButton { //создание кнопки 4
+                   Text{
                        text:"Lab3"
                        color:"#1E90FF"
                        font.family: "Courier"
@@ -73,21 +88,6 @@ ApplicationWindow { //создание окна
                        }
 
                }
-               /*TabButton { //создание кнопки 4
-                   Text{
-                       text:"Lab4"
-                       color:"#1E90FF"
-                       font.family: "Courier"
-                       font.pixelSize: 17
-                       anchors.horizontalCenter: parent.horizontalCenter //горизонтально в центре от родителя
-                       anchors.verticalCenter: parent.verticalCenter //вертикально в центре от родителя
-                   }
-                   background: Rectangle {
-                       border.color: parent.pressed ? "#1E90FF" : "#1E90FF" //цвет рамки
-                       color: "white"
-                       }
-
-               }*/
        }
 }
 

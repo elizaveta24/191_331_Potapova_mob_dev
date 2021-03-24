@@ -28,10 +28,10 @@
         <file>icon/video_stop.png</file>
         <file>Page_lab1.qml</file>
         <file>Page_lab2.qml</file>
-        <file>Page_lab3.qml</file>
+        <file>Page_lab3dop.qml</file>
         <file>main.qml</file>
         <file>icon/sunset-landscape.png</file>
         <file>icon/dog_PNG50375.png</file>
-        <file>Page_lab4.qml</file>
+        <file>Page_lab3.qml</file>
     </qresource>
 </RCC>

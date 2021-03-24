@@ -1,5 +1,11 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QNetworkReply>
+#include <QtWebEngine>
+#include "httpcontroller.h"
+
+
 
 int main(int argc, char *argv[])
 {
@@ -8,12 +14,11 @@ int main(int argc, char *argv[])
 #endif
 
     QGuiApplication app(argc, argv);
-
-    QQmlApplicationEngine engine;//создание объекта движка/интерпретатор QML
-    const QUrl url(QStringLiteral("qrc:/main.qml"));
+    QtWebEngine::initialize();
+    //const QUrl url(QStringLiteral("qrc:/main.qml"));
     //конструкция ниже -задает связь между событием objectCreated объекта engine
     //и коллбеки
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
+   /* QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app,
                      [url](QObject *obj, const QUrl &objUrl) // коллбек, лямбда выражение т.к безымянная функция объявленная
     {
@@ -23,7 +28,39 @@ int main(int argc, char *argv[])
     engine.load(url);//загрузить файл стартовой страницы в движок
 
     return app.exec();//начало работы приложения т.e передача управления
-                      // от точки входа коду самого приложения (cpp и qml)
+                      // от точки входа коду самого приложения (cpp и qml)*/
+    HTTPController httpController;
+    QQmlApplicationEngine engine;
+
+     QQmlContext *context = engine.rootContext();//Контексты позволяют предоставлять данные компонентам QML, созданным механизмом QML
+    context->setContextProperty("httpController", &httpController);
+       //преобразование пути стартовой страницы из char в Qurl
+    //подлючение слота, срабатывающего после создания objectCreated
+/* engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+ if (engine.rootObjects().isEmpty())
+     return -1;*/
+    //подлючение слота, срабатывающего после создания objectCreated
+ engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+ if (engine.rootObjects().isEmpty())
+     return -1;
+
+ QObject::connect(engine.rootObjects().first(), SIGNAL(restRequest()),
+ &httpController, SLOT(restRequest()));
+
+ QObject::connect(engine.rootObjects().first(), SIGNAL(failed(QString)),
+ &httpController, SLOT(failed(QString)));
+
+
+ QObject::connect(engine.rootObjects().first(), SIGNAL(cancel(QString)),
+ &httpController, SLOT(cancel(QString)));
+
+
+
+ QObject* main = engine.rootObjects()[0];
+  HTTPController sendtoqml(main);
+ engine.rootContext()->setContextProperty("_send", &sendtoqml);
+
+ return app.exec();//запуск бесконечного цикла обработки сообщений и слотов/сигналов
 }
 /* строение проекта
 .pro - файл настроек системы сборки qmake,
