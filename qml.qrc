@@ -26,12 +26,14 @@
         <file>icon/video_pause.png</file>
         <file>icon/video_start.png</file>
         <file>icon/video_stop.png</file>
-        <file>Page_lab1.qml</file>
-        <file>Page_lab2.qml</file>
         <file>Page_lab3dop.qml</file>
         <file>main.qml</file>
         <file>icon/sunset-landscape.png</file>
         <file>icon/dog_PNG50375.png</file>
         <file>Page_lab3.qml</file>
+        <file>icon/og_image.png</file>
+        <file>icon/large-weather_album-art-1000x1000-1588557670878.jpg</file>
+        <file>Page_lab1.qml</file>
+        <file>Page_lab2.qml</file>
     </qresource>
 </RCC>

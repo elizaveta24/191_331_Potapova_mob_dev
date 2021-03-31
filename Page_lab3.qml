@@ -1,14 +1,10 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
-import QtQuick.Layouts 1.3
-import QtQuick.Window 2.2 // подсказка конт пробел
-import QtMultimedia 5.4
-import QtQuick.Dialogs 1.0
+import QtQuick.Window 2.0
 import QtQuick.Controls.Material 2.12
-import QtQuick.Controls.Universal 2.12
-import Qt.labs.settings 1.0
-import QtGraphicalEffects 1.12
-import QtWebView 1.1
+import QtQuick.Layouts 1.15
+import QtMultimedia 5.12
+import QtGraphicalEffects 1.15
 
 
 Page {
@@ -77,6 +73,7 @@ Page {
             Layout.columnSpan: 2
             onClicked: {
                 _send.getPageInfo();
+                helloImage.visible = false;
             }
 
             Text {
@@ -108,7 +105,15 @@ Page {
                 anchors.fill: parent
 
                 background: Rectangle {
-                    color: "#eaeaea"
+                    id: rectangle
+                    anchors.fill: parent
+                    color: "#fff"
+                    Image {
+                        id: helloImage
+                        anchors.fill: parent
+                        source: "qrc:/icon/large-weather_album-art-1000x1000-1588557670878.jpg"
+
+                    }
                 }
             }
         }

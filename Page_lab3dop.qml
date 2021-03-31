@@ -3,7 +3,6 @@ import QtQuick.Controls 2.5
 import QtQuick.Window 2.0
 import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.15
-
 import QtMultimedia 5.12
 import QtGraphicalEffects 1.15
 

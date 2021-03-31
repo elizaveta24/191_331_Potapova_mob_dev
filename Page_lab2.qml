@@ -1,10 +1,13 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
-import QtQuick.Window 2.0
+import QtQuick.Layouts 1.3
+import QtQuick.Window 2.2 // подсказка конт пробел
+import QtMultimedia 5.4
+import QtQuick.Dialogs 1.0
 import QtQuick.Controls.Material 2.12
-import QtQuick.Layouts 1.15
-import QtGraphicalEffects 1.0
-import QtMultimedia 5.12
+import QtQuick.Controls.Universal 2.12
+import QtGraphicalEffects 1.12
+import QtWebView 1.1
 
 Page {
     width: 600
@@ -128,17 +131,43 @@ Page {
                            anchors.horizontalCenter: parent.horizontalCenter
                            spacing:4
 
+
+
+
+                           Button{
+                               Layout.column: 2
+                               Layout.row: 3
+
+                               id: openButton
+
+                               text: qsTr("...")
+                               Layout.preferredWidth: openButton.implicitHeight
+                               onClicked: fileDialog.open()
+
+                               FileDialog {
+                                   id: fileDialog
+
+                                   folder : videoUrl
+                                   title: qsTr("Open file")
+                                   nameFilters: [ "Music files (*.mp4 *.avi *.mkv *.mov)"]
+                                   //onAccepted: nature_video.source = fileDialog.fileUrl
+                               }
+
+
+                           }
+
                                RoundButton{ //создание кнопки back
+                                   id:back
 
                                    Image {
-                                       id:back
+                                       id:backi
                                        height: 40
                                        width: 40
                                        source: "qrc:/icon/back.png"
                                    }
                                    ColorOverlay { //цвет для картинки
-                                         anchors.fill: back// на всю картинку
-                                         source: back //источник
+                                         anchors.fill: backi// на всю картинку
+                                         source: backi //источник
                                          color: "#1E90FF"  // make image like it lays under red glass
                                      }
                                    flat: true //плоская кнопка
@@ -146,16 +175,17 @@ Page {
                                }
 
                                RoundButton{ //создание кнопки stop
+                                   id: stop
 
                                    Image {
                                        height: 40
                                        width: 40
-                                       id: stop
+                                       id: stopi
                                        source: "qrc:/icon/stop.png"
                                    }
                                    ColorOverlay { //цвет для картинки
-                                         anchors.fill: stop
-                                         source: stop //источник
+                                         anchors.fill: stopi
+                                         source: stopi //источник
                                          color: "#1E90FF"  // make image like it lays under red glass
                                      }
                                    flat: true
@@ -163,11 +193,12 @@ Page {
                                }
 
                                RoundButton{//создание кнопки play и pause
+                                   id: play_pause
 
                                    Image {
                                        height: 40
                                        width: 40
-                                       id: play_pause
+                                       id: play_pausei
                                        source: {
                                            if (nature_video.playbackState == MediaPlayer.PlayingState) //проверка свойства видео.PlaybackState свойство MediaPlayer. Это свойство содержит состояние воспроизведения мультимедиа и если оно PlayingState - медиафайл в данный момент воспроизводится.
                                                return "qrc:/icon/pause.png"
@@ -177,8 +208,8 @@ Page {
 
                                    }
                                    ColorOverlay { //цвет для картинки
-                                         anchors.fill: play_pause // на весь слайдер
-                                         source: play_pause//источник
+                                         anchors.fill: play_pausei // на весь слайдер
+                                         source: play_pausei//источник
                                          color: "#1E90FF"  // make image like it lays under red glass
                                      }
                                    // Material.background: Material.color("#000000", Shade50)
@@ -193,21 +224,27 @@ Page {
                                }
 
                                RoundButton{ //создание кнопки next
+                                   id: next
+
 
                                    Image {
                                        height: 40
                                        width: 40
-                                       id: next
+                                       id: nexti
                                        source: "qrc:/icon/next.png"
                                    }
                                    ColorOverlay { //цвет для картинки
-                                         anchors.fill: next // на вcю картинку
-                                         source: next//источник
+                                         anchors.fill: nexti // на вcю картинку
+                                         source: nexti//источник
                                          color: "#1E90FF"  // make image like it lays under red glass
                                      }
                                    flat: true
                                    onClicked: nature_video.seek(nature_video.position+2000) //перемотка видео вперед
                                }
+
+
+
+
                            }
 
 
@@ -215,10 +252,13 @@ Page {
 
                            MediaPlayer{
                                id: nature_video
-                               source: "Mare - 22183.mp4"
+                               //source: "Mare - 22183.mp4"
+                               //autoPlay: true
+                               source: if (fileDialog.fileUrl == 0) "Mare - 22183.mp4"; else fileDialog.fileUrl
                                //loops: 6
                                volume: slid_volum.value //громкость видео настраивается на slid_volum
                            }
+
                        }
                        RowLayout{
                            Layout.fillWidth: true
@@ -233,10 +273,19 @@ Page {
                                }
 
                            }
+                           Label{
+                               id:positionLabel
+                               anchors.left:slid_time.right
+                               anchors.leftMargin: 10
+                               readonly property int minutes: Math.floor(nature_video.position / 60000)
+                               readonly property int seconds: Math.round((nature_video.position % 60000) / 1000)
+                               text: Qt.formatTime(new Date(0, 0, 0, 0, minutes, seconds), qsTr("mm:ss"))
+                           }
                            anchors.horizontalCenter: outv.horizontalCenter
                            anchors.top:outv.bottom
 
                        }
+
 
                        VideoOutput { //отображение видео
                            id: outv
@@ -250,6 +299,31 @@ Page {
 
 
                        }
+                       MouseArea{
+                           id:rowvis
+                           anchors.fill: outv
+                           onClicked:
+                           play_pause.visible = true, back.visible = true,next.visible = true,openButton.visible = true,stop.visible = true, timerforguivideo.start()
+
+                           onPressed: {
+                               if (nature_video.playbackState == MediaPlayer.PlayingState) //проверка свойства видео.PlaybackState свойство MediaPlayer. Это свойство содержит состояние воспроизведения мультимедиа и если оно PlayingState - медиафайл в данный момент воспроизводится.
+                                   return nature_video.pause();
+                               else
+                                   return nature_video.play();
+                           }
+
+                       }
+                       /*MouseArea {
+                           id: playArea
+                           anchors.fill: outv
+                           onPressed: {
+                               if (nature_video.playbackState == MediaPlayer.PlayingState) //проверка свойства видео.PlaybackState свойство MediaPlayer. Это свойство содержит состояние воспроизведения мультимедиа и если оно PlayingState - медиафайл в данный момент воспроизводится.
+                                   return nature_video.pause();
+                               else
+                                   return nature_video.play();
+                           }
+                       }*/
+
 
 
 
@@ -260,6 +334,11 @@ Page {
                            else
                                return false
                        }
+                       Timer {
+                                                           id: timerforguivideo
+                                                           interval: 5000; running: true; repeat: true
+                                                           onTriggered: next.visible = false, back.visible = false, stop.visible = false, play_pause.visible = false,openButton.visible = false
+                                                       }
                    }
                }
                Item { // страница с камерой
@@ -361,6 +440,7 @@ Page {
                                    camera1.videoRecorder.stop() // остановить
                            }
                        }
+
                    }
 
                    visible: { //отображение страницы, когда video.checked == false

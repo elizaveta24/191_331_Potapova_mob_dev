@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
     //QtWebEngine::initialize();
-    const QUrl url(QStringLiteral("qrc:/main.qml"));
+
     /*QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
     engine.load(url);*/
     HTTPController httpController;
       QQmlApplicationEngine engine;
+      const QUrl url(QStringLiteral("qrc:/main.qml"));
 
        QQmlContext *context = engine.rootContext();//Контексты позволяют предоставлять данные компонентам QML, созданным механизмом QML
       context->setContextProperty("httpController", &httpController);
@@ -31,6 +32,8 @@ int main(int argc, char *argv[])
    if (engine.rootObjects().isEmpty())
        return -1;*/
       //подлючение слота, срабатывающего после создания objectCreated
+
+
    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
    if (engine.rootObjects().isEmpty())
        return -1;
